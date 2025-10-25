@@ -66,16 +66,29 @@
       background: black;
       position: absolute;
       top: 50%;
-      transform-origin: 100%;
-      transform: rotate(90deg);
-      transition: all 0.5s;
-      transition-timing-function:cubic-bezier(0, 5.02, 0.58, 1);
+      transform-origin: 100%; /*mengubah tempat untuk transformed element nya,*/
+      transform: rotate(90deg); /* perubahannya akan terjadi secara halus selama 0.5 detik. */
+      transition: all 0.5s; /* Mengatur kecepatan perubahan selama transisi */
+      transition-timing-function: cubic-bezier(0, 5.02, 0.58, 1); /*Mengatur kecepatan perubahan selama transisi*/
     }
   </style>
 
   <script>
 
+    const hour = document.querySelector('.hour-hand');
+    const min = document.querySelector('.min-hand');
+    const second = document.querySelector('.second-hand');
 
+    function setDate() {
+      const time = new Date(); /*tanggal dan waktu*/
+      const seconds = time.getSeconds(); /*mengambil detik dalam waktu yaitu 0-59s*/
+      // console.log(seconds);
+    }
+
+    // console.log(setDate());
+
+    // berjalan setiap detik
+    setInterval(setDate, 1000);
   </script>
 </body>
 
