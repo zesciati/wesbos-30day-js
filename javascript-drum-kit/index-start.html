@@ -86,10 +86,13 @@
     
 
     function removeTransition(e) {
+
       if (e.propertyName !== 'transform') return; // skip it if it's not a transform
 
-      // console.log(e.propertyName);
-      console.log(this);
+      console.log(e.propertyName);
+
+      // Ketika transisi transform selesai, class "playing" dihapus.
+      this.classList.remove("playing");
     }
 
     const keys = document.querySelectorAll('.key');
