@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <title>Scoped CSS Variables and JS</title>
   <link rel="icon" href="https://fav.farm/🔥" />
 </head>
+
 <body>
-<!-- 
+  <!-- 
   - Jika Spacing digeser ke kanan maka gambar akan tergeser ke kanan-bawah.
   - Jika Blur digeser maka gambar dan backgroundnya ter blur.
   - Jika Base Color diubah maka background saja yang terubah.  
+
+  ----------------------------------------------------------------------- 
+  - Menggunakan :root di css untuk bisa mengenai seluruh input di dalam class controls
+  - documentElement.style untuk mengincar root html dan memanipulasi css
+  - data-sizing digunakan untuk value yang menggunakan satuan
+  - addEventListener 'change' untuk mendengarkan perubahan "akhir value" 
+  - addEventListener 'mousemove' untuk mendengarkan pergerakan mouse (ini tambahan saja)
+  - :root bisa dihilangkan bisa juga tidak
 -->
   <h2>Update CSS Variables with <span class='hl'>JS</span></h2>
 
@@ -29,23 +39,21 @@
 
 
   <style>
-
-    /*
-      misc styles, nothing to do with CSS variables
-    */
-
-    :root{
+  
+    
+    :root {
       --base: #ffc600;
       --spacing: 10px;
       --blur: 10px;
     }
 
-    img{
+    img {
       padding: var(--spacing);
       background: var(--base);
       filter: blur(var(--blur));
     }
-    .hl{
+
+    .hl {
       color: var(--base);
     }
 
@@ -71,11 +79,8 @@
     // Memanggil kelas controls dan tag input
     const inputs = document.querySelectorAll('.controls input');
 
-    function handleUpdate(){
-      // console.log(this.value);
-      // console.log(this.dataset);
-      // console.log(this);
-
+    function handleUpdate() {
+      // adanya '' pada const suffix karena color tidak mempunyai satuan
       const suffix = this.dataset.sizing || '';
       // mengakses variabel
       document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
@@ -84,9 +89,10 @@
     // listen change of events in the input
     inputs.forEach(input => input.addEventListener('change', handleUpdate));
     inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
-    // inputs.forEach(input => input.addEventListener('input', handleUpdate));
-    
+
+
   </script>
 
 </body>
+
 </html>
